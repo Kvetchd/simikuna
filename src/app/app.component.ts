@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { SettingsService } from './services/settings.service'; 
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'simikuna';
+	readonly wordLengthSubscription: Subscription = this.settingsService.wordLengthSubject.subscribe((value) => this.wordLength = value);
+	wordLength: number = this.settingsService.wordLength;
+
+	readonly numTriesSubscription: Subscription = this.settingsService.numTriesSubject.subscribe((value) => this.numTries = value);
+	numTries: number = this.settingsService.numTries;
+
+  constructor(private settingsService: SettingsService) { }
+
+  ngOnDestroy(): void {
+    this.wordLengthSubscription.unsubscribe();
+    this.numTriesSubscription.unsubscribe();
+  }
 }

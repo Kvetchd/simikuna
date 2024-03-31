@@ -1,0 +1,27 @@
+<div class="board-container d-flex align-items-center justify-content-center">
+	<div class="board row d-flex flex-column align-items-center justify-content-center m-0">		
+		<div class="try-container row col d-flex container-fluid p-0 m-0" *ngFor="let try of tries" #tryContainer>
+			<div class="letter-container col d-flex ratio ratio-1x1 align-items-center justify-content-center p-0" *ngFor="let letter of try.letters"
+			    [class.match]="letter.state === LetterState.FULL_MATCH"
+			    [class.partial]="letter.state === LetterState.PARTIAL_MATCH"
+			    [class.wrong]="letter.state === LetterState.WRONG"
+			    [class.has-text]="letter.text !== ''">
+				{{letter.text}}
+			</div>
+		</div>
+	</div>
+</div>
+
+<app-keyboard [curLetterStates] = "curLetterStates" (newItemEvent)="handleClickKey($event)"></app-keyboard>
+
+<div class="info-msg"
+    [class.show]="infoMsg !== ''"
+    [class.fade-out]="fadeOutInfoMessage">
+	{{infoMsg}}
+</div>
+
+<div class="share-dialog-container" [class.show]="showShareDialogContainer">
+	<div class="share-dialog" [class.show]="showShareDialog">
+		<button (click)="handleClickShare()">Share</button>
+	</div>
+</div>

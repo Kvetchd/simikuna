@@ -1,0 +1,15 @@
+<div class="keyboard-container container-fluid px-0">
+	<div [class]="['row' + i, 'row'].join(' ')"
+	    *ngFor="let row of keyboardRows; let i = index">
+		<div *ngFor="let key of row" [class]="getKeyClass(key)"
+		    [class.enter]="key === 'Enter'"
+			(click)="addNewItem(key)">
+			<div *ngIf="key !== 'Backspace'; else backspace">
+				{{key}}
+			</div>
+			<ng-template #backspace>
+				<img src="../../../../assets/backspace.svg"/>
+			</ng-template>
+		</div>
+	</div>
+</div>
