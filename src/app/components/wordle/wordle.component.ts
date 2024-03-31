@@ -37,7 +37,7 @@ export class WordleComponent {
 
 	@Input() wordLength: number = this.settingsService.wordLength;
 
-	@Input() numTries: number = this.settingsService.numTries;
+	readonly numTries: number = 6;
 
 	// Stores all tries
 	// One try is one row in the UI
@@ -246,7 +246,7 @@ export class WordleComponent {
 		}
 
 		// Running out of tries. Show correct answer
-		if (this.numSubmittedTries === this.settingsService.numTries) {
+		if (this.numSubmittedTries === this.numTries) {
 			// Don't hide it
 			this.showInfoMessage(this.targetWord.toUpperCase(), false);
 			this.showShare();

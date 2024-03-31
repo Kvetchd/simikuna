@@ -18,16 +18,5 @@ export class HeaderComponent {
 		this.settingsService.subWordLength();
 	}
 
-	@Input() numTries = this.settingsService.numTries;
-	numMax = this.settingsService.MAX_NUM_TRIES;
-	numMin = this.settingsService.MIN_NUM_TRIES;
-
-	onAddNumTries() {
-		this.settingsService.addNumTries();
-	}
-	onSubNumTries() {
-		this.settingsService.subNumTries();
-	}
-
 	constructor(private settingsService: SettingsService) { }
 }
