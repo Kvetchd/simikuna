@@ -1,5 +1,6 @@
-import { Component, OnChanges, ElementRef, QueryList, ViewChildren, Input } from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChild, ViewChildren, Input, TemplateRef } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { WORDS } from '../../words';
 
 // Letter map
@@ -33,7 +34,12 @@ enum LetterState {
 	styleUrls: ['./wordle.component.scss']
 })
 export class WordleComponent {
+	@ViewChild('greeting') greeting!: TemplateRef<void>;
 	@ViewChildren('tryContainer') tryContainers!: QueryList<ElementRef>;
+
+	modalRef?: BsModalRef;
+
+	@Input() boardWidth: number = this.settingsService.boardWidth;
 
 	@Input() wordLength: number = this.settingsService.wordLength;
 
@@ -64,11 +70,13 @@ export class WordleComponent {
 	// Tracks the number of submitted tries
 	private numSubmittedTries = 0;
 
+	targetIndex!: number;
+
 	// Store the target word
-	private targetWord = '';
+	targetWord = '';
 
 	// Won or not
-	private won = false;
+	won = false;
 
 	// Stores the count for each letter from the target word
 	//
@@ -77,7 +85,7 @@ export class WordleComponent {
 	// {'h': 1, 'a': 1, 'p': 2, 'y': 1}
 	private targetWordLetterCounts: {[letter: string]: number} = {};
 
-	constructor(private settingsService: SettingsService) { }
+	constructor(private settingsService: SettingsService, private modalService: BsModalService) { }
 
 	handleClickKey(key: string) {
 		// Don't process key down when user has won the game
@@ -306,8 +314,8 @@ export class WordleComponent {
 		const numWords = WORDS.length;
 		while (true) {
 			// Randomly select a word and check if its length is this.settingsService.wordLength
-			const index = Math.floor(Math.random() * numWords);
-			const word = WORDS[index].word;
+			this.targetIndex = Math.floor(Math.random() * numWords);
+			const word = WORDS[this.targetIndex].word;
 			if (word.length === this.wordLength) {
 				this.targetWord = word.toLowerCase();
 				break;
@@ -325,5 +333,9 @@ export class WordleComponent {
 			}
 			this.targetWordLetterCounts[letter]++;
 		}
+	}
+
+	ngAfterViewInit(): void {
+		this.modalRef = this.modalService.show(this.greeting);
 	}
 }

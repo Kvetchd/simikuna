@@ -96,6 +96,12 @@ MIT
 ngx-bootstrap/dropdown
 MIT
 
+ngx-bootstrap/focus-trap
+MIT
+
+ngx-bootstrap/modal
+MIT
+
 ngx-bootstrap/positioning
 MIT
 

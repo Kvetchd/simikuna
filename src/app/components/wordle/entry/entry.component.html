@@ -1,0 +1,11 @@
+<div class="entry" #entry>
+    <h1 class="word">{{this.targetWord}}</h1>
+
+    <div class="subentry" *ngFor="let subentry of subentries">
+        <p class="type">{{subentry.type}}</p>
+        <p class="trans">{{subentry.trans}}</p>
+        <p class="def">{{subentry.def}}</p>
+        <p class="example">{{subentry.example}}</p>
+        <p class="exampleTrans">{{subentry.exampleTrans}}</p>
+    </div>
+</div>
