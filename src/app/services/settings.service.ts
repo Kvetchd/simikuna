@@ -6,36 +6,28 @@ import { Subject } from 'rxjs';
 })
 export class SettingsService {
   wordLengthSubject: Subject<number> = new Subject<number>;
-  numTriesSubject: Subject<number> = new Subject<number>;
+  boardWidthSubject: Subject<number> = new Subject<number>;
 
   MAX_WORD_LENGTH = 8;
   DEFAULT_WORD_LENGTH = 5;
+  DEFAULT_BOARD_WIDTH = 350;
   MIN_WORD_LENGTH = 4;
-  
-  MAX_NUM_TRIES = 9;
-  DEFAULT_NUM_TRIES = 6;
-  MIN_NUM_TRIES = 3;
 
   wordLength = this.DEFAULT_WORD_LENGTH;
+  boardWidth = this.DEFAULT_BOARD_WIDTH;
+
   addWordLength() {
     this.wordLength += 1;
+    this.boardWidth += 67;
     this.wordLengthSubject.next(this.wordLength);
+    this.boardWidthSubject.next(this.boardWidth);
   }
   subWordLength() {
     this.wordLength -= 1;
+    this.boardWidth -= 67;
     this.wordLengthSubject.next(this.wordLength);
+    this.boardWidthSubject.next(this.boardWidth);
   }
-  
-  numTries = this.DEFAULT_NUM_TRIES;
-  addNumTries() {
-    this.numTries += 1;
-    this.numTriesSubject.next(this.numTries);
-  }
-  subNumTries () {
-    this.numTries -= 1;
-    this.numTriesSubject.next(this.numTries);
-  }
-  
 
   constructor() { }
 }

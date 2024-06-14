@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Component, HostListener, Output, EventEmitter, Input } from '@angular/core';
 
 enum LetterState {
 	// you know
@@ -17,7 +17,7 @@ enum LetterState {
   styleUrls: ['./keyboard.component.scss']
 })
 
-export class KeyboardComponent implements OnInit {
+export class KeyboardComponent {
 
 	// Keyboard rows.
 	readonly keyboardRows = [
@@ -53,8 +53,4 @@ export class KeyboardComponent implements OnInit {
 		}
 	}
 	constructor() { }
-
-	ngOnInit(): void {
-	}
-
 }

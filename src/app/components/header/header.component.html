@@ -3,7 +3,7 @@
 		<ul class="navbar-nav">			
 			<li class="nav-item">
 				<a class="nav-link" href="#">
-					<img src="../../../assets/285-2857970_question-mark-question-mark-icon-transparent_30x30.png" width="30" height="30">
+					<img src="assets/285-2857970_question-mark-question-mark-icon-transparent_30x30.png" width="30" height="30">
 				</a>
 			</li>
 		</ul>
@@ -11,19 +11,13 @@
 		<ul class="navbar-nav mb-2">
 			<li class="nav-item" dropdown container="body" [insideClick]="true">
 				<a dropdownToggle class="nav-link" href="#">
-					<img src="../../../assets/3524659_30x30.png" width="30" height="30">
+					<img src="assets/3524659_30x30.png" width="30" height="30">
 				</a>
 				<ul *dropdownMenu class="dropdown-menu dropdown-menu-right">
 					<li><a class="dropdown-item disabled">
 						<h6>Word length</h6>
 						<app-add-substract [value]="wordLength" (valueAdd)="onAddWordLength()" 
 						(valueSub) = "onSubWordLength()" [maxValue]="wordMax" [minValue]="wordMin"></app-add-substract>
-					</a></li>
-					<li><hr class="divider dropdown-divider"></li>
-					<li><a class="dropdown-item disabled">
-						<h6>Max. tries</h6>
-						<app-add-substract [value]="numTries" (valueAdd)="onAddNumTries()" 
-						(valueSub) = "onSubNumTries()" [maxValue]="numMax" [minValue]="numMin"></app-add-substract>
 					</a></li>
 					<li><hr class="divider dropdown-divider"></li>
 					<li><a class="dropdown-item" href="#">Action</a></li>
