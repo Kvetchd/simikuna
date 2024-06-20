@@ -15,3 +15,5 @@ Simikuna currently incorporates only [*Yachakuqkunapa Simi Qullqa*](https://repo
 ## Cheatcode
 Open the web console at the start of a game to see the target word!
 
+## Credits
+Core Wordle functionalities were borrowed from [this repository](https://github.com/isuckatprogrammingyt/isuckatprogramming).
